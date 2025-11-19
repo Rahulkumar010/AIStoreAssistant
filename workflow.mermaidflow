@@ -1,0 +1,78 @@
+flowchart TD
+
+%% Data Sources
+A1([Google Reviews])
+A2([SQL Database])
+A3([Images])
+A4([Videos])
+A5([Excel Docs])
+
+subgraph A[DATA SOURCES]
+A1
+A2
+A3
+A4
+A5
+end
+
+A --> B
+
+%% Data Ingestion Pipeline
+subgraph B[DATA INGESTION PIPELINE]
+B1[Extract Raw Data]
+B2[Preprocess & Clean]
+B3["Generate Embeddings (Azure OpenAI)"]
+B4[Store in ChromaDB]
+B1 --> B2 --> B3 --> B4
+end
+
+B --> C
+
+%% Vector Database
+subgraph C["VECTOR DATABASE (ChromaDB)"]
+C1[Reviews Collection]
+C2[Transactions]
+C3[Image Insights]
+C4[Video Insights]
+C5[Documents]
+C6[Metadata]
+C1 --- C2 --- C3 --- C4 --- C5 --- C6
+end
+
+C --> D
+
+%% Agentic AI Layer
+subgraph D["AGENTIC AI LAYER (FastAPI)"]
+D1[Sentiment Agent<br>• Review Analysis<br>• Scorecard Generation]
+D2[Visual Agent<br>• Image/Video Analysis<br>• Alert Generation]
+D3[Data Agent<br>• NL Queries<br>• Insight Generation<br>• Recommendations]
+D1 --- D2 --- D3
+end
+
+D --> E
+
+%% Streamlit UI Layer
+subgraph E[STREAMLIT UI LAYER]
+E1[Dashboard]
+E2[Sentiment Analysis]
+E3[Visual Analysis]
+E4[Data Analyzer]
+E5[Monitoring]
+E6[Reports]
+E7[Data Ingestion]
+E8[Settings]
+E1 --- E2 --- E3 --- E4 --- E5 --- E6 --- E7 --- E8
+end
+
+E --> F
+
+%% Outputs
+subgraph F[OUTPUTS]
+F1[Sentiment Scorecards]
+F2[Visual Scorecards]
+F3[Real-time Alerts]
+F4[Executive Reports]
+F5[AI Insights]
+F6[Recommendations]
+F1 --- F2 --- F3 --- F4 --- F5 --- F6
+end
