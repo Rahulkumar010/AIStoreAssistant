@@ -662,6 +662,15 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 ```
 
+### Git LFS Push
+```bash
+git lfs track "*.bin" "*.zip" "*.sqlite3"
+git lfs migrate import --include="*.bin"
+git add .gitattributes
+# check lfs files using
+git lfs ls-files
+```
+
 ### Getting Help
 
 - Review backend logs in terminal
